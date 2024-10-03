@@ -95,21 +95,197 @@ justify-content: space-evenly;
 	height:60px;
 	background: lightblue;
 }
+ .shape1:nth-child(1){
+	animation-name: pendulum;
+	animation-duration: 3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	
+ }
 
 .shape1:nth-child(2) {
-	transform: rotate(45deg) ;
+	transform: rotate(45deg);
+	transition: all 2s;
 
+}
+
+.shape1:nth-child(2):hover{
+	transform: rotate(200deg);
 }
 
 .shape1:nth-child(3){
 transform: scale(0.5, 0.75);
+transition: background-color 2s, transform 50ms;
+animation: complex-jump 3s ease-in-out infinite;
 }
+
+.shape1:nth-child(3):hover{
+	background-color: brown;
+}
+
+.shape1:nth-child(3):active{
+	transform: scale(4, 4);
+}
+
+
 
 .shape1:nth-child(4){
 	transform: skew(-30deg, 40deg);
+	animation-name: jump;
+	animation-duration: 750ms;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-delay: 1s;
 }
 
+.shape1:nth-child(5){
+	transform: rotate(20deg) scale(0.8) skew(10deg, 40deg);
+	transition: all 2 s;
+	animation-name: jump;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
 
+.shape1:nth-child(5):hover{
+	transform: rotate(270deg) scale(2.3) skew(50deg, -25deg);
+}
+
+/******************************************
+		Animinations
+******************************************/
+ 
+@keyframes jump{
+	/*keyframes are points in an animinatin- defined % */
+	50% {
+		transform: translate(0, -100px);
+	
+	}
+}
+
+@keyframes pendulum{
+	/* use 0% and 100% to apply property to whole animination */
+	0%,
+	100%{
+		/* set an anchor point fo objt to move */
+		transform-origin:0, -100px;
+	}
+	0%{
+		transform: rotate(77deg);
+	}
+	100%{
+		transform: rotate(-45deg);
+	}
+}
+
+@keyframes complex-jump{
+	5%{
+		transform: scaleY(0.9);
+		transform:rotateY(0);
+	}
+	10%{
+		transform:rotateY(1.1);
+	}
+	50%{
+		transform: scaleY(1);
+		transform: translateY(-100px);
+	}
+	90%{
+		transform:scaleY(1);
+	}
+	95%{
+		transform: scaleY(0.9);
+		transform:scaleY(0);
+	}
+	100%{
+	transform: scaleY(1);
+	}
+}
+/******************************************
+		slider
+******************************************/
+.slider{
+	margin:30px auto 0;
+	/* top, left-right, bottom */
+	width: 80%;
+	text-align: center;
+	overflow:hidden;
+}
+
+.slideback{
+	position: relative;
+}
+
+.slideback > img{
+	width: 100%;
+}
+
+.slideholder{
+	position:absolute;
+    top:0;
+	width:300%;
+	height:100%;
+	display: flex;
+	transition: margin 1s;
+}
+
+.imgslide{
+	flex-grow:1;
+	height: 100%;
+}
+
+.imgslide img{
+	margin-top: 26%;
+	width: 26%;
+}
+
+#slide1:checked ~ .slideback .slideholder { margin-left:0;}
+#slide2:checked ~ .slideback .slideholder { margin-left: -100%;}
+#slide3:checked ~ .slideback .slideholder { margin-left: -200%; }
+
+/******************************************
+		labels
+******************************************/
+label {
+	display: inline-block;
+	width: 100px;
+	padding: 5px 0;
+	text-align: center;
+	margin: 0 15px;
+	border: 2px solid hsla(101, 100%, 30%, 1.00);
+	background:hsla(101, 100%, 80%, 1.00);
+	font-size: 24px;
+	border-radius: 10px;
+
+	transition: background 0.5s, transform 0.15;
+}
+
+label:hover{
+	background: hsla(101, 100%, 40%, 1.00);
+	cursor:pointer;
+
+}
+
+label:active{
+	transform: scale(0.9);
+}
+
+input[type="radio"]{
+	display: none;
+}
+#slide1:checked ~ label:nth-of-type(1){
+background: hsla(101, 100%, 50%, 1.00);
+font-weight: bold;
+}
+#slide2:checked ~ label:nth-of-type(2){
+	background: hsla(101, 100%, 50%, 1.00);
+	font-weight: bold;
+}
+#slide3:checked ~ label:nth-of-type(3){
+background: hsla(101, 100%, 50%, 1.00);
+font-weight: bold;
+}	
 
 
 
